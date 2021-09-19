@@ -37,6 +37,20 @@
                 <label for="desc" class="form-label">Descrizione</label>
                 <textarea class="form-control" name="content" id="desc" cols="30" rows="10" value="{{ old('content')}}"></textarea>
             </div>
+            <div>
+                <h4>Tag</h4>
+                @foreach($tags as $tag)
+                    <span class="d-inline-block">
+                        <input id="tag{{$loop->iteration}}" type="checkbox" 
+                        value="{{$tag->id}}" 
+                        @if(in_array($tag->id, old('tags', [])))
+                        checked
+                        @endif
+                        name="tags[]">
+                        <label for="tag{{$loop->iteration}}">{{$tag->name}}</label>
+                    </span>
+                @endforeach
+            </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
